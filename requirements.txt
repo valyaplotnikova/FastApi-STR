@@ -1,7 +1,11 @@
 alembic
+aiohttp
 asyncpg
+beautifulsoup4
 fastapi
 uvicorn[standard]
+pandas
 pydantic
 pydantic-settings
 sqlalchemy
+xlrd
