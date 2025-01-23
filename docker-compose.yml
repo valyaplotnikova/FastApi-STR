@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   redis:
     image: redis:latest
@@ -27,7 +25,7 @@ services:
     tty: true
     ports:
       - "8000:8000"
-    command: sh -c "alembic - alembic init migrations && alembic revision --autogenerate -m 'Database create' && alembic upgrade head && uvicorn main:main_app --reload "
+    command: sh -c "cd spimex_trading_app && alembic upgrade head && uvicorn main:main_app --reload "
     depends_on:
       db:
         condition: service_healthy
@@ -39,7 +37,7 @@ services:
   celery:
     build: .
     tty: true
-    command: celery -A celery_app worker --loglevel=info -P eventlet
+    command: sh -c "cd spimex_trading_app && celery -A celery_app worker --loglevel=info -P eventlet"
     restart: on-failure
     env_file:
       - .dokenv
@@ -53,7 +51,7 @@ services:
   celery-beat:
     build: .
     tty: true
-    command: celery -A celery_app beat --loglevel=info
+    command: sh -c "cd spimex_trading_app && celery -A celery_app beat --loglevel=info"
     restart: on-failure
     env_file:
       - .dokenv

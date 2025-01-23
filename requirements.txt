@@ -5,6 +5,7 @@ beautifulsoup4
 celery
 eventlet
 fastapi
+fastapi-cache2
 fastapi_filter
 uvicorn[standard]
 pandas

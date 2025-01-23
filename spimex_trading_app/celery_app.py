@@ -6,8 +6,8 @@ from core.config import settings
 
 celery_app = Celery(
     'tasks',
-    broker=f'{settings.celery.broker}://{settings.celery.host}:{settings.celery.port}',
-    backend=f'{settings.celery.broker}://{settings.celery.host}:{settings.celery.port}'
+    broker=f'{settings.celery.broker}://{settings.celery.broker}:{settings.celery.port}',
+    backend=f'{settings.celery.broker}://{settings.celery.broker}:{settings.celery.port}'
 )
 
 
