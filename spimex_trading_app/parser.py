@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 from core.config import settings
-from core.models import SpimexTradingResult
+from core.models import SpimexTradingResults
 
 
 class Parser:
@@ -103,7 +103,7 @@ class Parser:
             async with session.begin():
                 try:
                     for index, row in spimex_trading_results.iterrows():
-                        result = SpimexTradingResult(
+                        result = SpimexTradingResults(
                             exchange_product_id=row['exchange_product_id'],
                             exchange_product_name=row['exchange_product_name'],
                             oil_id=row['oil_id'],
