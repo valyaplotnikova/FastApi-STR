@@ -1,9 +1,9 @@
 __all__ = (
     "db_helper",
     "Base",
-    "SpimexTradingResult",
+    "SpimexTradingResults",
 )
 
 from .db_helper import db_helper
 from .base import Base
-from .spimex_trading_results import SpimexTradingResult
+from .spimex_trading_results import SpimexTradingResults
