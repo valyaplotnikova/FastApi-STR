@@ -2,10 +2,14 @@ alembic
 aiohttp
 asyncpg
 beautifulsoup4
+celery
+eventlet
 fastapi
+fastapi_filter
 uvicorn[standard]
 pandas
 pydantic
 pydantic-settings
+redis
 sqlalchemy
 xlrd
