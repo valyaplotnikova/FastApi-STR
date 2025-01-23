@@ -7,14 +7,13 @@ class RunConfig(BaseModel):
     port: int = 8000
 
 
-class ApiV1Prefix(BaseModel):
-    prefix: str = "/v1"
-    users: str = "/users"
+class ApiSMTPrefix(BaseModel):
+    trading_results: str = "/trading_results"
 
 
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
-    v1: ApiV1Prefix = ApiV1Prefix()
+    smt: ApiSMTPrefix = ApiSMTPrefix()
 
 
 class DatabaseConfig(BaseModel):
@@ -33,9 +32,15 @@ class DatabaseConfig(BaseModel):
     }
 
 
+class CeleryConfig(BaseModel):
+    broker: str = 'redis'
+    host: str = "localhost"
+    port: int = 6379
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=(".env.template", ".env"),
+        env_file=(".env",),
         case_sensitive=False,
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",
@@ -43,6 +48,7 @@ class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
+    celery: CeleryConfig = CeleryConfig()
 
 
 settings = Settings()
