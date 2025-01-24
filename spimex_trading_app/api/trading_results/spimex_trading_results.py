@@ -1,6 +1,7 @@
+from datetime import date
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from fastapi_cache.decorator import cache
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -21,8 +22,8 @@ async def get_last_trading_dates(session: Annotated[AsyncSession, Depends(db_hel
 @router.get("/dynamics")
 @cache(expire=3600 * 24)
 async def get_dynamics(
-        start_date,
-        end_date,
+        start_date: Annotated[date, Query(..., description="Start date in format YYYY-MM-DD")],
+        end_date: Annotated[date, Query(..., description="End date in format YYYY-MM-DD")],
         str_filter: Annotated[SpimexTradingResultsFilter, Depends(SpimexTradingResultsFilter)],
         session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
 ):
