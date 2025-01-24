@@ -38,7 +38,7 @@
 
 ## Установка
 
-1. Клонируйте данный репозиторий к себе на локальную машину: git clone https://github.com/valyaplotnikova/Habits.git
+1. Клонируйте данный репозиторий к себе на локальную машину: git clone https://github.com/valyaplotnikova/FastApi-STR.git
 
 2. В файлах .env.example подставьте свои переменные окружения и переименуйте файлы в .env
 
