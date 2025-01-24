@@ -9,7 +9,7 @@ services:
     image: postgres:16-alpine
     restart: on-failure
     env_file:
-      - .dokenv
+      - ./.env
     expose:
       - "5432"
     volumes:
@@ -25,14 +25,14 @@ services:
     tty: true
     ports:
       - "8000:8000"
-    command: sh -c "cd spimex_trading_app && alembic upgrade head && uvicorn main:main_app --reload "
+    command: sh -c "cd spimex_trading_app && alembic upgrade head && python parser.py && uvicorn main:main_app --host 0.0.0.0 --port 8000 --reload "
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - .:/app
     env_file:
-      - .dokenv
+      - ./.env
 
   celery:
     build: .
@@ -40,7 +40,7 @@ services:
     command: sh -c "cd spimex_trading_app && celery -A celery_app worker --loglevel=info -P eventlet"
     restart: on-failure
     env_file:
-      - .dokenv
+      - ./.env
     volumes:
       - .:/app
     depends_on:
@@ -54,7 +54,7 @@ services:
     command: sh -c "cd spimex_trading_app && celery -A celery_app beat --loglevel=info"
     restart: on-failure
     env_file:
-      - .dokenv
+      - ./.env
     volumes:
       - .:/app
     depends_on:
