@@ -49,6 +49,7 @@ class Settings(BaseSettings):
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
     celery: CeleryConfig = CeleryConfig()
+    mode: str = "DEV"
 
 
 settings = Settings()
