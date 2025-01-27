@@ -60,8 +60,8 @@ class SpimexTradingResultsRepository(SqlAlchemyRepository):
         :return: Список торгов за указанный период, отсортированный по дате.
                  Возвращает последовательность объектов модели, соответствующих заданным критериям.
         """
-        start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        # start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        # end_date = datetime.strptime(end_date, '%Y-%m-%d')
         query = str_filter.filter(select(self.model).where(self.model.date.between(start_date, end_date)))
         result = await self.session.execute(query.order_by(self.model.date))
         return result.scalars().all()
