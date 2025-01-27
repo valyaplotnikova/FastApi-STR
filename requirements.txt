@@ -11,6 +11,7 @@ uvicorn[standard]
 pandas
 pydantic
 pydantic-settings
+pytest
 redis
 sqlalchemy
 xlrd
